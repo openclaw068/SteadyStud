@@ -1,0 +1,33 @@
+Subject: RFQ — CNC machining + laser logo marking (SteadyStud) — Qty 50/100/500/1000
+
+Hi [Name/Team],
+
+I’m requesting a quote for a small metal product component for our project “SteadyStud.” We’re comparing manufacturing approaches and need pricing for a CNC-machined option that also includes laser logo marking.
+
+Ship-to: 55117, USA
+
+Scope (CNC option):
+- Process: CNC machining (milling; turning if needed) from solid stock
+- Material: non-rusting metal preferred; raw finish is acceptable (e.g., 6061 aluminum or stainless — please advise best choice for cost/marking contrast)
+- Finish: deburr/edge break; raw/as-machined is fine
+- Marking: laser logo marking (logo only; no serial numbers). Please include any one-time setup/programming charge and per-part marking cost.
+
+Quantities to quote:
+- 50 / 100 / 500 / 1000 units
+
+Files:
+- STEP model + DXF included (see attachments)
+
+Please include in your quote:
+1) Unit price at each quantity + any NRE/setup/tooling fees
+2) Lead time for: (a) first article/prototype, and (b) production batch
+3) Marking details: laser type used for marking (fiber preferred for metal), expected contrast on raw aluminum/stainless, and any constraints on logo size/line thickness
+4) Material recommendation (6061 vs 5052 vs stainless) and any DFM feedback
+5) Tolerances you can hold by default and any features that may drive cost
+6) Shipping cost or shipping assumptions to 55117
+
+If you have an online RFQ portal, feel free to point me to it and I can submit there as well.
+
+Thanks,
+Grayson
+SteadyStud

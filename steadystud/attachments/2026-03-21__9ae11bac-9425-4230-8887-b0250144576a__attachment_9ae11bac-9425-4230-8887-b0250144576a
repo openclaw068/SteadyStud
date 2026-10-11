@@ -1,0 +1,28 @@
+From: magstud <magstud@agentmail.to>
+To: test@example.com
+Subject: hi
+Message-ID: <0100019d0b724765-863b966e-f68d-4308-9da2-c35ff5726632-000000@email.amazonses.com>
+Content-Transfer-Encoding: 7bit
+Date: Fri, 20 Mar 2026 13:32:12 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Feedback-ID: ::1.us-east-1.wgLmaF8RxPhbCnEDRCfKTSFPj/DjU1ePwnavZU3/96E=:AmazonSES
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1774013532;
+	h=From:To:Subject:Message-ID:Content-Transfer-Encoding:Date:MIME-Version:Content-Type:Feedback-ID;
+	bh=FxcWc3PmNpZRgMpFT+L+ntqTqGNbwhhGMTMAdHqThTc=;
+	b=EI3fzubIBkVGisIBex1hMT6RDlslIMTOdY68T9jPSVhnQCTT+n6umB58lFgwxygW
+	wlOroJzXN1crhQos1G/VbOsYbz7l9d0FJ9Rg+xHBIk6AwshuuhxAVgVJ39b55HlyvpZ
+	KQ6xm1XeP/hmKHde8dgjNY3EgmgAWtbPNOkAfw78=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=62jdywjzckf44onyfvbfoewfrophnbwi; d=agentmail.to; t=1774013532;
+	h=From:To:Subject:Message-ID:Content-Transfer-Encoding:Date:MIME-Version:Content-Type;
+	bh=FxcWc3PmNpZRgMpFT+L+ntqTqGNbwhhGMTMAdHqThTc=;
+	b=iW8fLjLLkKhxQGQ2J5MfB07E1+QQDvDPGsPJ8GB3c/SmCUCoojW7q4D0s7JY7uQU
+	PMmcnywB7FzKOS9W1UpSp1li737kb6rsIkkJUaXsXrjMiX9mSfcFny2kdCLSLIw5JMz
+	rCErxqkiQGNlUDTHfB5zXhvIMxr09yYUShYNJt0Ki/YgdjP3KJMNybv3QO+pF8YjZSJ
+	LI8gBeUCbzXyOa68jMNZHWVf1hiVkJEIvt4JbPB2PCYFM/UMFTQE7lgyvYdOr2tcCD+
+	hmCeXynsOmPEPafMghNkITNtCxjfI7s8Gcu+VX4MTx5e1RoZzvGGTQMC1STbHV7H6Ig
+	SmTt2E4CTQ==
+
+yo

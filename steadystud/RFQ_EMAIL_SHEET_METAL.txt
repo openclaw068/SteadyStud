@@ -1,0 +1,32 @@
+Subject: RFQ — sheet metal fab + laser logo marking (SteadyStud) — Qty 50/100/500/1000
+
+Hi [Name/Team],
+
+I’m requesting a quote for a small metal product component for our project “SteadyStud.” We’re comparing manufacturing approaches and need pricing for a sheet-metal fabrication option that also includes laser logo marking.
+
+Ship-to: 55117, USA
+
+Scope (sheet metal option):
+- Process: laser cut / punch + press brake forming (as needed)
+- Material: non-rusting metal preferred; raw finish is acceptable (e.g., aluminum 5052/6061 or stainless — please advise best choice for stiffness/cost)
+- Finish: deburr/edge break; raw is fine
+- Marking: laser logo marking (logo only). Please include any one-time setup/programming charge and per-part marking cost.
+
+Quantities to quote:
+- 50 / 100 / 500 / 1000 units
+
+Files:
+- DXF included (see attachments). If you prefer a 2D drawing with bend notes/flat pattern requirements, tell me your preferred format.
+
+Please include in your quote:
+1) Unit price at each quantity + any setup/tooling fees
+2) Lead time for: (a) first article/prototype, and (b) production batch
+3) Marking details: laser type used for marking on metal (fiber preferred), expected contrast on raw aluminum/stainless, and any constraints on logo size/line thickness
+4) Material + thickness recommendation and any DFM feedback (bend radii, hole-to-bend spacing, etc.)
+5) Shipping cost or shipping assumptions to 55117
+
+If you have an online RFQ portal, feel free to point me to it and I can submit there as well.
+
+Thanks,
+Grayson
+SteadyStud

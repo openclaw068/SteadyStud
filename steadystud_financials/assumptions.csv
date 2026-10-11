@@ -1,0 +1,20 @@
+Parameter,Value,Units/Notes
+Primary customer,DIY homeowner/renter,Occasional hanging/mounting
+Primary channels (launch),DTC (Shopify) + creator/SEO,Explicitly avoiding Amazon
+Phase 2 channel,Retail (regional hardware → big-box),Highest long-term scale if velocity proven
+US only,Yes,Domestic only for launch
+Box size,6x4x2,inches
+Packaged weight (estimate),8,oz
+Price (DTC),18.99,USD target for standalone (test 14.99/16.99/19.99)
+Wholesale price (retail),9.50,USD placeholder (~50% of MSRP; refine per retailer)
+COGS (ex-finish),5.00,USD per unit placeholder; update after quotes
+Packaging materials per unit,0.70,USD (box+insert+label+tape+filler)
+Finishing per unit (anodize + laser mark),1.50,USD placeholder; replace with anodizer quote
+Payment processing,0.029+0.30,Stripe typical (assumption)
+Avg shipping cost to company,5.60,USD per unit (if free shipping)
+Customer shipping fee charged,4.99,USD; adjust policy tests
+Return rate,0.06,fraction placeholder (DIY can be higher; improved by insert)
+Customer acquisition cost (blended),8.00,USD per order placeholder (UGC/SEO goal; paid-only could be higher)
+Ad spend as % of revenue,0.12,fraction placeholder for modeling
+Source: USPS Ground Advantage,https://www.usps.com/ship/ground-advantage.htm,2–5 days; weight tiers rounded
+Truth-in-advertising,Magnetic finds fasteners not wood,Must be explicit in copy/instructions

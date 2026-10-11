@@ -1,0 +1,93 @@
+{
+  "project": "SteadyStud",
+  "description": "Magnetic stud finder - RFQ tracking for metal fabrication + laser marking",
+  "updated": "2026-04-01",
+  "specs": {
+    "part": "Metal stud finder body",
+    "process": "Fabrication + laser logo marking",
+    "quantities": [50, 100, 500, 1000],
+    "files_sent": ["Magnetic Stud Finer v1.step", "Magnetic Stud Finer v1 v2.dxf", "SteadyStud_2D_Top_View_APPROVED.pdf", "Magnetic_Stud_Finder_RFQ_Spec.pdf"]
+  },
+  "suppliers": [
+    {
+      "company": "Approved Sheet Metal",
+      "contact": "Shane Van Heerden",
+      "email": "svheerden@approvedsheetmetal.com",
+      "phone": "603-288-5371",
+      "status": "no_quote",
+      "notes": "Estimating team sent no-quote. Shane wants a call — may reconsider with adjusted specs.",
+      "last_contact": "2026-03-31",
+      "action": "Call Shane at 603-288-5371"
+    },
+    {
+      "company": "Pittsburgh Laser Cutting",
+      "contact": "Jason Lasica",
+      "email": "jason@pittsburghlasercutting.com",
+      "phone": "+1 412-204-6293",
+      "status": "quote_received",
+      "quote_file": "Quote2246.pdf",
+      "quote_number": "2246",
+      "quote_date": "2026-03-30",
+      "quote_expires": "2026-03-31",
+      "material": "6061-T6 Aluminum",
+      "finish": "Anodized Type II",
+      "dimensions_in": "5.000 × 2.000 × 0.250",
+      "dimensions_mm": "127.000 × 50.800 × 6.350",
+      "pricing": [
+        {"qty": 50, "unit_price": 425.20, "total": 21260.00, "lead_time_days": 30},
+        {"qty": 100, "unit_price": 296.50, "total": 29650.00, "lead_time_days": 35},
+        {"qty": 500, "unit_price": 164.40, "total": 82200.00, "lead_time_days": 45},
+        {"qty": 1000, "unit_price": 153.65, "total": 153650.00, "lead_time_days": 60}
+      ],
+      "payment_terms": "Net 30",
+      "shipping": "Ex Works (Incoterms 2020)",
+      "tolerances": "± 0.020 inch, ± 1 degree",
+      "notes": "Laser cut blanks then machine both sides. Inside sharp corners may need adjusting. Quote EXPIRED (was valid through 3/31). If ordering, reconfirm pricing first.",
+      "last_contact": "2026-03-30",
+      "action": "Quote expired 3/31 — contact Jason to reconfirm pricing before ordering. Review sharp corner note."
+    },
+    {
+      "company": "Decimal",
+      "contact": "Monica Devi",
+      "email": "cs2@decimal.net",
+      "phone": "954-975-7992 x318",
+      "status": "no_quote",
+      "notes": "Declined to quote.",
+      "last_contact": "2026-03-30",
+      "action": "None — pass"
+    },
+    {
+      "company": "JLCPCB / JLCCNC",
+      "contact": "Shanice",
+      "email": "shanice@jlcpcb.com",
+      "status": "pending_upload",
+      "notes": "Requires file upload through jlccnc.com/sheet-metal-quote portal. No manual RFQ accepted.",
+      "last_contact": "2026-03-30",
+      "action": "Upload STEP + DXF to jlccnc.com/sheet-metal-quote"
+    },
+    {
+      "company": "Dynamic Design & Manufacturing (Dyco)",
+      "email": "rfq@dycoinc.com",
+      "status": "bounced",
+      "notes": "Email bounced — address invalid or mailbox full.",
+      "last_contact": "2026-03-30",
+      "action": "Find correct contact email or skip"
+    },
+    {
+      "company": "Fictiv",
+      "email": "hello@fictiv.com",
+      "status": "marketing_only",
+      "notes": "Marketing email asking to upload first design. Potential supplier but no direct response to RFQ.",
+      "last_contact": "2026-03-31",
+      "action": "Consider uploading specs to fictiv.com for quote"
+    }
+  ],
+  "summary": {
+    "total_contacted": 6,
+    "quotes_received": 1,
+    "no_quote": 2,
+    "pending": 1,
+    "bounced": 1,
+    "marketing_only": 1
+  }
+}

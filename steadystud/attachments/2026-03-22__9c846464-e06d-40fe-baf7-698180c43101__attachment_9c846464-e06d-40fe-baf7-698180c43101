@@ -1,0 +1,60 @@
+From: magstud <magstud@agentmail.to>
+To: sales@prototek.com
+Subject: =?UTF-8?Q?RFQ_=E2=80=94_Magnetic_stud_finder_alumi?=
+ =?UTF-8?Q?num_body_+_laser_mark_=28Qty_100_=26_1?= =?UTF-8?Q?=2C000=29?=
+Message-ID: <0100019d175e786e-078aa8e6-5e65-48a4-80bf-054a1dfe34ef-000000@email.amazonses.com>
+Content-Transfer-Encoding: quoted-printable
+Date: Sun, 22 Mar 2026 21:06:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Feedback-ID: ::1.us-east-1.wgLmaF8RxPhbCnEDRCfKTSFPj/DjU1ePwnavZU3/96E=:AmazonSES
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1774213560;
+	h=From:To:Subject:Message-ID:Content-Transfer-Encoding:Date:MIME-Version:Content-Type:Feedback-ID;
+	bh=WsDbi+NO4DSiDOrDK/WM/p/bd81Vq9DMchbEKvLiZR0=;
+	b=BUR983AYqOKbHv3tzj5fyal/BYtYthXBdRYCIFIuNfeNgJBcaZWO/8I1lsXNVmg2
+	brXeZnBBjhjLollMpEx6TJIeEE3WvM/bbvt3zpgmZG75B2Q8dyi0gEoYLLEzWBh1CcZ
+	jmcngVN2owIiI6yj2f4OktY3hivr/jf79dUmKwas=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=62jdywjzckf44onyfvbfoewfrophnbwi; d=agentmail.to; t=1774213560;
+	h=From:To:Subject:Message-ID:Content-Transfer-Encoding:Date:MIME-Version:Content-Type;
+	bh=WsDbi+NO4DSiDOrDK/WM/p/bd81Vq9DMchbEKvLiZR0=;
+	b=B1ZkJj9fwpNpD3onvHS6SGwyUtLBItByaVBOknfKPFY+HdOpk+GDL1fiP+FdxAq9
+	J8doiON86hhsp3wIj8uDoNoSIgpsV566M3Uyyy5cmNgbIDFg46JdslC7GURxn1qWkLf
+	3neP/x7w/3sUwA9xoXJbG3iNVxuc4EWdIQBFXnGcxaauHmPUe5PQAQ3NGB0j8pl+WqK
+	cKw3D+/gQI9yHvj5znmbu2mQTVQqW632IN7Gyxdq45BdHf26DoICO3GJlLCQ4D/LnC2
+	YJDYq6HO767zC10df/wOKCBg26k7RAVoVOIBiMkWRXrQHVtVCltCsVCvgjFbu1fOGmr
+	EZDC4uqj+w==
+
+Hi =E2=80=94
+
+I=E2=80=99m requesting a quote for a small all=E2=80=91metal =
+magnetic stud finder body.
+
+Please quote both quantity breaks:
+- 100 units
+- 1,000 units
+
+And please quote (or explicitly confirm infeasible) both =
+approaches:
+- Option A: CNC from billet per STEP (current design)
+- Option B: lower=E2=80=91cost approach using plate/sheet stock + =
+laser/waterjet profile + minimal secondary ops (cost=E2=80=91down). If not =
+feasible, please specify what constraint blocks it.
+
+Material / marking:
+- Aluminum =E2=80=94 please recommend 6061 vs 7075
+- Laser marking (no =
+paint fill)
+- Optional alternate line item: anodize + laser marking (clear =
++ black if possible)
+
+Please include:
+- Unit price + any setup/NRE
+- Lead time (first articles + production)
+- Any DFM notes / constraints =
+driving cost (especially to enable Option B)
+
+Thanks,
+Grayson
+(sent from magstud@agentmail.to)
