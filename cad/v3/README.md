@@ -30,13 +30,16 @@ slot, adhesive back pad covers the magnet and is the wall-contact face.
 | Laser marking artwork | `SteadyStud_v3A_laser_marking_inch.dxf` + `_laser_marking_drawing.pdf` |
 | Full drawing for review | `SteadyStud_v3A_drawing.pdf` |
 | Back pad die-cut | `SteadyStud_v3_back_pad.dxf` |
+| 3D print (ruler + logo engraved 0.020 deep) | `SteadyStud_v3A_PRINT_mm.stl` / `SteadyStud_v3B_PRINT_mm.stl` |
 
 Other outputs: `_assembly.step` (body + magnet), `_laser.dxf` (CUT / MARK /
-LOGO_ZONE layers together), `_body_mm.stl` (3D-print fit test), renders (`.png`).
+LOGO_ZONE layers together), `_body_mm.stl` (plain body, no marks), `_PRINT.step`
+(engraved print model, inch), renders (`.png`).
 
 ## Scripts
 
 - `steadystud_v3.py` — parametric model; STEP, combined laser DXF, STL, back pad
 - `draw_v3.py` — dimensioned drawing PDFs
 - `shop_files_v3.py` — cut-only DXF, marking DXF, marking drawing (inch)
+- `print_v3.py` — 3D-print models with ruler and logo engraved
 - `render_v3.py` — product renders

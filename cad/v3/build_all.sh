@@ -6,4 +6,5 @@ rm -rf out && mkdir out
 python3 steadystud_v3.py
 python3 draw_v3.py
 python3 shop_files_v3.py
+python3 print_v3.py
 python3 render_v3.py
