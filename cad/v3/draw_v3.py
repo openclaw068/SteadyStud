@@ -80,8 +80,10 @@ def leader(ax, xy, xytext, text, fs=7):
                 arrowprops=dict(arrowstyle="-", color=DIM, lw=0.5))
 
 
-def sheet(variant, mag_len):
-    s = P.slot_geometry(mag_len)
+def sheet(variant, m):
+    s = P.slot_geometry(m)
+    mag_len = P.mag_len(m)
+    mtxt = (f'{m["n"]}X ' if m["n"] > 1 else "") + m["desc"]
     fig = plt.figure(figsize=(11, 8.5))
     ax = fig.add_axes([0, 0, 1, 1])
     ax.set_xlim(0, 11)
@@ -92,7 +94,7 @@ def sheet(variant, mag_len):
     # border + title
     ax.add_patch(Rectangle((0.3, 0.3), 10.4, 7.9, fill=False, lw=1.2, color=INK))
     ax.text(0.5, 7.95, f"STEADYSTUD v3{variant} — 2D-CUT ALUMINUM BODY, "
-            f"{mag_len:g}\" BAR MAGNET", fontsize=13, weight="bold", color=INK)
+            f"{mtxt.upper()} MAGNET" + ("S" if m["n"] > 1 else ""), fontsize=13, weight="bold", color=INK)
     ax.text(0.5, 7.72, "Laser/waterjet profile from 0.250\" plate. No machining. "
             "Dimensions in inches. Drawing generated from the laser DXF.",
             fontsize=8.5, color=DIM)
@@ -163,11 +165,17 @@ def sheet(variant, mag_len):
     ax.add_patch(Rectangle((ex + s["x1"], ey), 5 - s["x1"], P.THK * zs,
                            facecolor="#d9d9d9", edgecolor=INK, lw=1, hatch="////"))
     mx = ex + (s["x0"] + s["x1"]) / 2 - mag_len / 2
-    ax.add_patch(Rectangle((mx, ey), mag_len, P.MAG_T * zs, facecolor=MAG,
-                           edgecolor=INK, lw=0.8))
-    ax.text(mx + mag_len / 2, ey + P.MAG_T * zs / 2,
-            f"MAGNET {mag_len:g} x {P.MAG_W:g} x {P.MAG_T:g}  (N42, magnetized "
-            "through thickness)", ha="center", va="center", fontsize=6.5)
+    # slot void above a thinner magnet (front-face recess)
+    if m["t"] < P.THK - 1e-6:
+        ax.add_patch(Rectangle((ex + s["x0"], ey + m["t"] * zs), s["len"],
+                               (P.THK - m["t"]) * zs, fill=False, edgecolor=INK,
+                               lw=0.6, ls=(0, (3, 2))))
+    for i in range(m["n"]):
+        ax.add_patch(Rectangle((mx + i * m["l"], ey), m["l"], m["t"] * zs,
+                               facecolor=MAG, edgecolor=INK, lw=0.8))
+    ax.text(mx + mag_len / 2, ey + m["t"] * zs / 2,
+            f"MAGNET {mtxt}  (magnetized through thickness)", ha="center",
+            va="center", fontsize=6.5)
     # pad under
     ax.add_patch(Rectangle((ex + 0.02, ey - 0.06), 4.96, 0.04, facecolor="#555555",
                            edgecolor="none"))
@@ -177,8 +185,11 @@ def sheet(variant, mag_len):
     hdim(ax, ex + s["x0"], ex + s["x1"], ey + P.THK * zs + 0.25,
          f"SLOT {s['len']:.3f} / MAGNET {mag_len:.3f}", ext_from=ey + P.THK * zs,
          fs=7)
-    ax.text(ex, ey - 0.45, "Magnet bonded FLUSH TO BACK (wall) face. Any thickness "
-            "mismatch is taken on the front face.", fontsize=7, color=DIM)
+    recess = P.THK - m["t"]
+    ax.text(ex, ey - 0.45, "Magnet bonded FLUSH TO BACK (wall) face. " +
+            (f"Front face recessed {recess:.3f} ({recess * 25.4:.2f} mm)." if recess > 0.005
+             else "Any thickness mismatch is taken on the front face."),
+            fontsize=7, color=DIM)
 
     # ---------------- notes ----------------
     notes = [
@@ -190,10 +201,11 @@ def sheet(variant, mag_len):
         "6. MARKING: laser mark after anodize — layer MARK (ruler) and LOGO_ZONE. Not engraved.",
         "7. BACK PAD: adhesive-backed PET felt or UHMW tape ≤0.5 mm, die-cut to",
         "   SteadyStud_v3_back_pad.dxf (outline inset 0.020). Covers magnet; wall-contact face.",
-        f"8. MAGNET: {mag_len:g} x 1/2 x 1/4 NdFeB N42, Ni-Cu-Ni, magnetized through thickness.",
-        ("   Stock ref: K&J Magnetics BZ084. " if mag_len == 3.0 else
-         "   Not a US catalog stock size — custom order. ") +
-        "Bond with 2-part epoxy; polarity uniform across lot.",
+        f"8. MAGNET: {mtxt} NdFeB {m['grade']}, Ni-Cu-Ni, magnetized through thickness. "
+        f"Source: {m['source']}. Bond with 2-part epoxy"
+        + (", ALL bars with the SAME face toward the wall (they repel end to end — "
+           "clamp in the slot while curing; do not flip one to make them stick)."
+           if m["n"] > 1 else "; polarity uniform across lot."),
         "9. USE: hold notch UP (long axis vertical). Mark at notch apex = fastener column = stud line.",
     ]
     import textwrap
@@ -208,11 +220,11 @@ def sheet(variant, mag_len):
 
     # title block
     tb = [("PART", f"SteadyStud body v3{variant}"),
-          ("MAGNET", f"{mag_len:g}\" bar"),
+          ("MAGNET", mtxt),
           ("SOURCE", "cad/v3/steadystud_v3.py"),
           ("SUPERSEDES", "Stud Finer v1 (for quoting)"),
           ("UNITS", "inch"),
-          ("DATE", "2026-10-10"),
+          ("DATE", "2026-10-12"),
           ("STATUS", "PROTOTYPE / RFQ — NOT RELEASED")]
     bx, by = 7.75, 0.45
     ax.add_patch(Rectangle((bx - 0.08, by - 0.05), 2.95, 0.2 * len(tb) + 0.08,

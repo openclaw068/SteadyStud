@@ -35,15 +35,20 @@ NOTCH_APEX_X = 0.250               # V apex depth from end
 CL_Y = W / 2                       # centerline (notch + magnet)
 
 # magnet slot
-MAG_W, MAG_T = 0.500, 0.250        # magnet cross-section (width, thickness)
 CLEAR = 0.010                      # per side, for epoxy + laser/magnet tolerance
 RELIEF_D = 0.125                   # dog-bone relief at slot corners (~50% of thk; shop may reduce to its min hole)
+MM = 1 / 25.4
 
+# Each variant: n identical bar magnets laid end to end on the centerline, all
+# magnetized through thickness with the SAME face toward the wall, bonded flush
+# to the back (wall) face. l/w/t in inches.
 VARIANTS = {
-    # name: magnet length.  "A" = K&J BZ084 stock (3 x 1/2 x 1/4, N42).
-    #                        "B" = 4 x 1/2 x 1/4 custom bar (no US stock found).
-    "A": 3.000,
-    "B": 4.000,
+    "A": dict(n=1, l=3.000, w=0.500, t=0.250, grade="N42",
+              desc='3 x 1/2 x 1/4 in', source="K&J Magnetics BZ084 (stock)"),
+    "B": dict(n=1, l=4.000, w=0.500, t=0.250, grade="N42",
+              desc='4 x 1/2 x 1/4 in', source="custom, or 2x K&J BZX082 (4 x 1/2 x 1/8) stacked"),
+    "C": dict(n=2, l=40 * MM, w=10 * MM, t=5 * MM, grade="N35-N52",
+              desc="40 x 10 x 5 mm", source="Amazon B0DMVD3CXG, 30-pack (commodity size)"),
 }
 
 # ruler (laser mark), same positions/lengths as v1 grooves
@@ -60,10 +65,15 @@ PAD_INSET = 0.020
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
 
 
-def slot_geometry(mag_len):
+def mag_len(m):
+    """Total length of the magnet row."""
+    return m["n"] * m["l"]
+
+
+def slot_geometry(m):
     """Slot centered between notch apex and far end, on the centerline."""
-    slot_len = mag_len + 2 * CLEAR
-    slot_w = MAG_W + 2 * CLEAR
+    slot_len = mag_len(m) + 2 * CLEAR
+    slot_w = m["w"] + 2 * CLEAR
     avail = L - NOTCH_APEX_X
     gap = (avail - slot_len) / 2
     x0 = NOTCH_APEX_X + gap
@@ -91,8 +101,8 @@ def profile_solid(thk):
     return body.newObject(corners).fillet(CORNER_R)
 
 
-def build_body(mag_len):
-    s = slot_geometry(mag_len)
+def build_body(m):
+    s = slot_geometry(m)
     body = profile_solid(THK)
     slot = (cq.Workplane("XY").center((s["x0"] + s["x1"]) / 2, CL_Y)
             .rect(s["len"], s["w"]).extrude(THK))
@@ -103,10 +113,12 @@ def build_body(mag_len):
     return body.cut(slot).cut(reliefs), s
 
 
-def build_magnet(mag_len, s):
-    cx = (s["x0"] + s["x1"]) / 2
-    return (cq.Workplane("XY").center(cx, CL_Y)
-            .rect(mag_len, MAG_W).extrude(MAG_T))   # flush to back face z=0
+def build_magnet(m, s):
+    """The magnet row, flush to the back face (z=0)."""
+    x = (s["x0"] + s["x1"]) / 2 - mag_len(m) / 2
+    bars = [cq.Workplane("XY").center(x + m["l"] * (i + 0.5), CL_Y)
+            .rect(m["l"], m["w"]).extrude(m["t"]).val() for i in range(m["n"])]
+    return cq.Workplane("XY").newObject(bars)      # separate solids, not fused
 
 
 def ticks():
@@ -191,16 +203,17 @@ def export_step_inch(shapes, path):
     Interface_Static.SetCVal_s("write.step.unit", "INCH")
     Interface_Static.SetCVal_s("write.step.schema", "AP214IS")
     for sh in shapes:
-        w.Transfer(sh.val().scale(25.4).wrapped, STEPControl_AsIs)
+        for v in sh.vals():                        # every solid (e.g. each magnet bar)
+            w.Transfer(v.scale(25.4).wrapped, STEPControl_AsIs)
     assert w.Write(path) == IFSelect_RetDone, path
 
 
 def main():
     os.makedirs(OUT, exist_ok=True)
     report = {}
-    for name, mag_len in VARIANTS.items():
-        body, s = build_body(mag_len)
-        mag = build_magnet(mag_len, s)
+    for name, m in VARIANTS.items():
+        body, s = build_body(m)
+        mag = build_magnet(m, s)
         base = os.path.join(OUT, f"SteadyStud_v3{name}")
         export_step_inch([body], base + "_body.step")
         export_step_inch([body, mag], base + "_assembly.step")
@@ -209,7 +222,7 @@ def main():
                             base + "_body_mm.stl", tolerance=0.02, angularTolerance=0.2)
         export_dxf(body, base + "_laser.dxf")
         vol = body.val().Volume()
-        report[name] = dict(mag_len=mag_len, slot=s, volume_in3=vol,
+        report[name] = dict(magnets=f'{m["n"]} x {m["desc"]}', slot=s, volume_in3=vol,
                             mass_g=vol * 16.387 * 2.70,
                             valid=body.val().isValid())
     export_pad(os.path.join(OUT, "SteadyStud_v3_back_pad.dxf"))

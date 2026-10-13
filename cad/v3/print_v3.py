@@ -17,8 +17,8 @@ TEXT = "STEADYSTUD"
 TEXT_H = 0.29            # nominal font size, in; auto-shrinks to fit the 2.0 in logo zone
 
 
-def print_body(mag_len):
-    body, s = P.build_body(mag_len)
+def print_body(m):
+    body, s = P.build_body(m)
     top = P.THK
     # ruler ticks
     for x0, y0, x1, y1 in P.ticks():
@@ -43,8 +43,8 @@ def print_body(mag_len):
 
 def main():
     out = {}
-    for v, ml in P.VARIANTS.items():
-        body, tb = print_body(ml)
+    for v, m in P.VARIANTS.items():
+        body, tb = print_body(m)
         base = os.path.join(P.OUT, f"SteadyStud_v3{v}_PRINT")
         cq.exporters.export(cq.Workplane().add(body.val().scale(25.4)),
                             base + "_mm.stl", tolerance=0.01, angularTolerance=0.15)

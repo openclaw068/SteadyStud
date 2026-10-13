@@ -15,7 +15,12 @@ Regenerate everything:
 | Variant | Magnet | Source | Slot |
 |---|---|---|---|
 | v3A | 3 × ½ × ¼ in N42 bar (60% of length) | K&J Magnetics BZ084, stock | 3.020 × 0.520 |
-| v3B | 4 × ½ × ¼ in bar (80% of length) | custom order (no US stock found) | 4.020 × 0.520 |
+| v3B | 4 × ½ × ¼ in bar (80% of length) | custom, or 2× K&J BZX082 (4 × ½ × ⅛) stacked | 4.020 × 0.520 |
+| **v3C** | **2 × 40 × 10 × 5 mm bars end to end (63% of length)** | **Amazon [B0DMVD3CXG](https://www.amazon.com/dp/B0DMVD3CXG), 30-pack ≈ $0.67 each → ≈ $1.33 per tool** | **3.170 × 0.414** |
+
+v3C is the low-cost build: commodity magnets, 5 mm thick, so they sit flush with the
+back face and leave a 1.35 mm recess on the front. Both bars go in with the SAME face
+toward the wall; they repel end to end, so clamp them in the slot while the epoxy cures.
 
 Kept from v1: 5.000 × 2.000 × 0.250 envelope, end V-notch (unchanged), ruler tick layout.
 Changed: chamfers removed (tumble deburr), 45° corners → R0.125, engraved ruler →

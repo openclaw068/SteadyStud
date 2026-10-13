@@ -44,18 +44,21 @@ def pad_mesh():
     return mesh(cq.Workplane("XY").add(inset).toPending().extrude(0.02))
 
 
-def scene(pl, mag_len, explode=0.0, dx=0.0, dy=0.0):
-    body, s = P.build_body(mag_len)
-    mag = P.build_magnet(mag_len, s)
+def scene(pl, m, explode=0.0, dx=0.0, dy=0.0):
+    body, s = P.build_body(m)
+    mag = P.build_magnet(m, s)
     off = np.array([dx, dy, 0.0])
     pl.add_mesh(mesh(body).translate(off), color=BODY, smooth_shading=True,
                 specular=0.35, specular_power=18, ambient=0.18, diffuse=0.8)
     for m in marks():
         pl.add_mesh(m.translate(off), color=MARKC, ambient=0.6)
     # magnet installs from the back (wall) side, so explode it downward
-    pl.add_mesh(mesh(mag).translate(off + [0, 0, -explode]), color=MAGNET,
-                smooth_shading=True, specular=0.5, specular_power=30,
-                ambient=0.08, diffuse=0.75)
+    for one in mag.vals():                         # each bar separately so seams show
+        mm_ = mesh(cq.Workplane().add(one)).translate(off + [0, 0, -explode])
+        pl.add_mesh(mm_, color=MAGNET, smooth_shading=True, specular=0.5,
+                    specular_power=30, ambient=0.08, diffuse=0.75)
+        if explode:
+            pl.add_mesh(mm_.extract_feature_edges(30), color="#3a3c40", line_width=1.5)
     pl.add_mesh(pad_mesh().translate(off + [0, 0, -0.022 - 2 * explode]), color=PADC,
                 ambient=0.25, specular=0.0)
 
@@ -77,7 +80,8 @@ if __name__ == "__main__":
     hero = [(c[0] - 3.2, c[1] - 5.4, 4.6), c, (0, 0, 1)]
     for v, ml in P.VARIANTS.items():
         shoot(f"SteadyStud_v3{v}_render.png", lambda pl, ml=ml: scene(pl, ml), hero)
-    shoot("SteadyStud_v3B_exploded.png",
-          lambda pl: scene(pl, P.VARIANTS["B"], explode=0.75),
-          [(c[0] - 4.0, c[1] - 7.6, 1.2), (2.5, 1.0, -0.7), (0, 0, 1)])
+    for v in ("B", "C"):
+        shoot(f"SteadyStud_v3{v}_exploded.png",
+              lambda pl, v=v: scene(pl, P.VARIANTS[v], explode=0.75),
+              [(c[0] - 4.0, c[1] - 7.6, 1.2), (2.5, 1.0, -0.7), (0, 0, 1)])
     print("done")
